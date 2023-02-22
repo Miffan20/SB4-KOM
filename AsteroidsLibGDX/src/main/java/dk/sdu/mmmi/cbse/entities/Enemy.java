@@ -5,20 +5,24 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import dk.sdu.mmmi.cbse.main.Game;
 
-public class Player extends SpaceObject {
+public class Enemy extends SpaceObject {
 
     private boolean left;
     private boolean right;
     private boolean up;
+    public int AImovement;
 
     private float maxSpeed;
     private float acceleration;
     private float deceleration;
 
-    public Player() {
+    public Enemy() {
+        
 
-        x = Game.WIDTH / 2;
-        y = Game.HEIGHT / 2;
+        x = Game.WIDTH / 3;
+        y = Game.HEIGHT / 3;
+
+        AImovement = 1;
 
         maxSpeed = 300;
         acceleration = 200;
@@ -33,17 +37,17 @@ public class Player extends SpaceObject {
     }
 
     private void setShape() {
-        shapex[0] = x + MathUtils.cos(radians) * 8;
-        shapey[0] = y + MathUtils.sin(radians) * 8;
+        shapex[0] = x + MathUtils.cos(radians) * 16;
+        shapey[0] = y + MathUtils.sin(radians) * 16;
 
-        shapex[1] = x + MathUtils.cos(radians - 4 * 3.1415f / 5) * 8;
-        shapey[1] = y + MathUtils.sin(radians - 4 * 3.1145f / 5) * 8;
+        shapex[1] = x + MathUtils.cos(radians - 4 * 3.1415f / 5) * 16;
+        shapey[1] = y + MathUtils.sin(radians - 4 * 3.1145f / 5) * 16;
 
-        shapex[2] = x + MathUtils.cos(radians + 3.1415f) * 5;
-        shapey[2] = y + MathUtils.sin(radians + 3.1415f) * 5;
+        shapex[2] = x + MathUtils.cos(radians + 3.1415f) * 10;
+        shapey[2] = y + MathUtils.sin(radians + 3.1415f) * 10;
 
-        shapex[3] = x + MathUtils.cos(radians + 4 * 3.1415f / 5) * 8;
-        shapey[3] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 8;
+        shapex[3] = x + MathUtils.cos(radians + 4 * 3.1415f / 5) * 16;
+        shapey[3] = y + MathUtils.sin(radians + 4 * 3.1415f / 5) * 16;
     }
 
     public void setLeft(boolean b) {
@@ -68,10 +72,14 @@ public class Player extends SpaceObject {
         }
 
         // accelerating
-        if (up) {
+        if (AImovement == 1) {
             dx += MathUtils.cos(radians) * acceleration * dt;
             dy += MathUtils.sin(radians) * acceleration * dt;
         }
+        if (x == play){
+            AImovement = 0;
+        }
+
 
 
         // deceleration
