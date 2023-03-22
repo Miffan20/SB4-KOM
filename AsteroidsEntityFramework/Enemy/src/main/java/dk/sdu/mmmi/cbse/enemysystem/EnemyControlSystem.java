@@ -7,6 +7,8 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 
+import java.util.Random;
+
 import static dk.sdu.mmmi.cbse.common.data.GameKeys.*;
 
 /**
@@ -22,15 +24,45 @@ public class EnemyControlSystem implements IEntityProcessingService {
             PositionPart positionPart = enemy.getPart(PositionPart.class);
             MovingPart movingPart = enemy.getPart(MovingPart.class);
 
-            movingPart.setLeft(gameData.getKeys().isDown(LEFT));
-            movingPart.setRight(gameData.getKeys().isDown(RIGHT));
-            movingPart.setUp(gameData.getKeys().isDown(UP));
+            //setting random enemy movement
+            Random rand = new Random();
+
+            //rng to get next random float
+            float rng = rand.nextFloat();
+            System.out.println(rng);
+
+            //setting forward movement if rng is bigger than 0.1 and smaller than 0.9
+            if (rng > 0.1f && rng < 0.9f) {
+                movingPart.setUp(true);
+            }
+            //steering left if rng is smaller than 0.2
+            if (rng < 0.2f){
+                movingPart.setLeft(true);
+            }
+
+            //steering right if rng is bigger than 0.8
+            if (rng > 0.8f){
+                movingPart.setRight(true);
+            }
+
+            //therefore it moves forward between 0.1-0.9. steers left is rng is between 0-0.2 and steers right if rng is between 0.8 and 1
+
+
+
+
+
             
             
             movingPart.process(gameData, enemy);
             positionPart.process(gameData, enemy);
 
             updateShape(enemy);
+
+            //these are needed in order to
+            movingPart.setRight(false);
+            movingPart.setLeft(false);
+            movingPart.setUp(false);
+
         }
     }
 
