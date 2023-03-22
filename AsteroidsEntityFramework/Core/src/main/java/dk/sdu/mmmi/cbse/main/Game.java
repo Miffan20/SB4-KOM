@@ -59,6 +59,8 @@ public class Game
         entityPlugins.add(enemyPlugin);
         entityProcessors.add(enemyProcess);
 
+        //instanziate asteroid
+
 
 
         // Lookup all Game Plugins using ServiceLoader
