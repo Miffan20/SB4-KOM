@@ -77,14 +77,14 @@ public class EnemyControlSystem implements IEntityProcessingService {
         shapex[0] = (float) (x + Math.cos(radians) * 8);
         shapey[0] = (float) (y + Math.sin(radians) * 8);
 
-        shapex[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 8);
-        shapey[1] = (float) (y + Math.sin(radians - 4 * 3.1145f / 5) * 8);
+        shapex[1] = (float) (x + Math.cos(radians - 4 * 3.1415f / 5) * 4);
+        shapey[1] = (float) (y + Math.sin(radians - 4 * 3.1145f / 5) * 4);
 
-        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 5);
-        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 5);
+        shapex[2] = (float) (x + Math.cos(radians + 3.1415f) * 15);
+        shapey[2] = (float) (y + Math.sin(radians + 3.1415f) * 15);
 
-        shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-        shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+        shapex[3] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 4);
+        shapey[3] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 4);
 
         entity.setShapeX(shapex);
         entity.setShapeY(shapey);
